@@ -65,9 +65,23 @@ Suggested citation (GitHub):
 
 Monnahan P. ScanTools. GitHub repository. https://github.com/pmonnahan/ScanTools (accessed 2025-09-05).
 
-Suggested BibTeX (update year/fields if you find a canonical paper):
+Key related publication (uses ScanTools in analyses):
+
+Monnahan, P. et al. Pervasive population genomic consequences of genome duplication in Arabidopsis arenosa. Nat. Ecol. Evol. 3, 457 (2019).
+
+Suggested BibTeX entries (update fields if desired):
 
 ```bibtex
+@article{monnahan_arenosa_2019,
+	author = {Monnahan, P. and others},
+	title = {Pervasive population genomic consequences of genome duplication in Arabidopsis arenosa},
+	journal = {Nature Ecology & Evolution},
+	year = {2019},
+	volume = {3},
+	pages = {457},
+	note = {doi: 10.1038/s41559-019-0807-4}
+}
+
 @misc{monnahan_scantools,
 	author = {Monnahan, Paul},
 	title = {ScanTools},
@@ -76,8 +90,6 @@ Suggested BibTeX (update year/fields if you find a canonical paper):
 	note = {accessed 2025-09-05}
 }
 ```
-
-If there is a peer-reviewed paper describing ScanTools, prefer citing that; I can look it up and add a full BibTeX entry on request.
 
 ## Notes and caveats
 - The refactored modules are intended to be deterministic given fixed random seeds; set `numpy.random.seed()` in callers if exact reproducibility of downsampling is required.
@@ -94,7 +106,7 @@ Suggested BibTeX for this wrapper:
 
 ```bibtex
 @misc{rchoudhury_scantools_wrapper_2025,
-	author = {Choudhury, R.},
+	author = {Choudhury, R. R.},
 	title = {ScanTools Snakemake wrapper},
 	year = {2025},
 	howpublished = {Repository / workflow in project},
