@@ -69,7 +69,7 @@ Key related publication (uses ScanTools in analyses):
 
 Monnahan, P. et al. Pervasive population genomic consequences of genome duplication in Arabidopsis arenosa. Nat. Ecol. Evol. 3, 457 (2019).
 
-Suggested BibTeX entries (update fields if desired):
+
 
 ```bibtex
 @article{monnahan_arenosa_2019,
