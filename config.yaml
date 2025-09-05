@@ -1,0 +1,8 @@
+# Example config for ScanTools Snakemake pipeline
+popkey: /data/users/rchoudhury/colchi_vaibhav/configs/pop_matrix.tsv
+vcf: /data/users/rchoudhury/colchi_vaibhav/results/gatk4/final_vcf/missingness_filtered.vcf.gz
+ref: /data/users/rchoudhury/Biscutella_Genomes/Biscutella_centromeres_and_chromosome_evolution/Genome_assemblies/Varia_review2.FINAL.Syri.fa
+outdir: results/scantools
+window_size: 100000
+step: 100000
+chroms: ["Bv1","Bv2","Bv3","Bv4","Bv5","Bv6","Bv7", "Bv8", "Bv9"]  # optional list of chromosomes to restrict to

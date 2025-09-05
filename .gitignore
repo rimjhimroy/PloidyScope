@@ -1,0 +1,62 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+egg-info/
+pip-wheel-metadata/
+
+# Virtual environments
+venv/
+.venv/
+env/
+envs/
+
+# Pytest / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Snakemake and workflow outputs
+.snakemake/
+work/
+results/
+logs/
+
+# Temporary files
+*.tmp
+*.log
+*.out
+/tmp/
+
+# Large bioinformatics outputs (VCF/indices, BAMs etc.)
+*.vcf.gz
+*.vcf.gz.tbi
+*.vcf.gz.csi
+*.vcf
+*.bam
+*.bai
+*.fa.fai
+*.fai
+
+# local editable install artifacts
+*.egg-info/
+*.egg

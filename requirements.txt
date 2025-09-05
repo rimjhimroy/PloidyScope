@@ -1,0 +1,8 @@
+cyvcf2
+pysam
+scikit-learn
+numpy==1.24.*
+scipy
+pandas
+cython
+pyvcf
