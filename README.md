@@ -100,7 +100,7 @@ This wrapper and the refactored code are intended as a convenience layer over th
 
 If you use this Snakemake wrapper, please also credit the wrapper author:
 
-R.R. Choudhury (2025). ScanTools Snakemake wrapper. https://github.com/your-org/ScanTools_snakemake (replace with actual URL or fork).
+R.R. Choudhury (2025). ScanTools Snakemake wrapper. https://github.com/rimjhimroy/Scantools_snakemake
 
 Suggested BibTeX for this wrapper:
 
@@ -110,6 +110,6 @@ Suggested BibTeX for this wrapper:
 	title = {ScanTools Snakemake wrapper},
 	year = {2025},
 	howpublished = {Repository / workflow in project},
-	note = {please replace URL with the canonical location of this wrapper}
+	note = {URL: https://github.com/rimjhimroy/Scantools_snakemake}
 }
 ```

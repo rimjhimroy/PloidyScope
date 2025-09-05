@@ -7,7 +7,7 @@ authors:
     given-names: R. R.
 identifiers:
   - type: url
-    value: "https://github.com/your-org/ScanTools_snakemake"
+    value: "https://github.com/rimjhimroy/Scantools_snakemake"
 references:
   - type: article
     title: "Pervasive population genomic consequences of genome duplication in Arabidopsis arenosa"
