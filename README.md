@@ -57,9 +57,9 @@ python -m pytest tests -q
 ```
 
 ## Citation and References
-This wrapper and the refactored code are intended as a convenience layer over the original ScanTools implementation. Please follow the license and citation requirements of the upstream project when redistributing or publishing results derived from this code.
+This wrapper and the refactored code are intended as a convenience layer over the original ScanTools implementation. Please follow the license and citation requirements when redistributing or publishing results derived from this code.
 
-If you use this Snakemake wrapper, please credit the wrapper author:
+Please credit the wrapper author:
 
 R.R. Choudhury (2025). ScanTools Snakemake wrapper. https://github.com/rimjhimroy/Scantools_snakemake
 
@@ -74,9 +74,7 @@ Suggested BibTeX for this wrapper:
 	note = {URL: https://github.com/rimjhimroy/Scantools_snakemake}
 }
 ```
-Please credit the original ScanTools project when using this wrapper. The upstream project is hosted on GitHub:
-
-Original ScanTools repository: https://github.com/pmonnahan/ScanTools (Paul Monnahan)
+Please credit the original ScanTools project when using this wrapper. 
 
 Monnahan, P. et al. Pervasive population genomic consequences of genome duplication in Arabidopsis arenosa. Nat. Ecol. Evol. 3, 457 (2019).
 
