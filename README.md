@@ -57,48 +57,9 @@ python -m pytest tests -q
 ```
 
 ## Citation and References
-Please credit the original ScanTools project when using this wrapper. The upstream project is hosted on GitHub:
-
-Original ScanTools repository: https://github.com/pmonnahan/ScanTools (Paul Monnahan)
-
-Suggested citation (GitHub):
-
-Monnahan P. ScanTools. GitHub repository. https://github.com/pmonnahan/ScanTools (accessed 2025-09-05).
-
-Key related publication (uses ScanTools in analyses):
-
-Monnahan, P. et al. Pervasive population genomic consequences of genome duplication in Arabidopsis arenosa. Nat. Ecol. Evol. 3, 457 (2019).
-
-
-
-```bibtex
-@article{monnahan_arenosa_2019,
-	author = {Monnahan, P. and others},
-	title = {Pervasive population genomic consequences of genome duplication in Arabidopsis arenosa},
-	journal = {Nature Ecology & Evolution},
-	year = {2019},
-	volume = {3},
-	pages = {457},
-	note = {doi: 10.1038/s41559-019-0807-4}
-}
-
-@misc{monnahan_scantools,
-	author = {Monnahan, Paul},
-	title = {ScanTools},
-	howpublished = {GitHub repository},
-	url = {https://github.com/pmonnahan/ScanTools},
-	note = {accessed 2025-09-05}
-}
-```
-
-## Notes and caveats
-- The refactored modules are intended to be deterministic given fixed random seeds; set `numpy.random.seed()` in callers if exact reproducibility of downsampling is required.
-- When running on real data, ensure sites excluded from analysis (low coverage, low mappability, repeats) are consistently masked when computing callable sites and summary statistics.
-
-## License and credit
 This wrapper and the refactored code are intended as a convenience layer over the original ScanTools implementation. Please follow the license and citation requirements of the upstream project when redistributing or publishing results derived from this code.
 
-If you use this Snakemake wrapper, please also credit the wrapper author:
+If you use this Snakemake wrapper, please credit the wrapper author:
 
 R.R. Choudhury (2025). ScanTools Snakemake wrapper. https://github.com/rimjhimroy/Scantools_snakemake
 
@@ -113,3 +74,26 @@ Suggested BibTeX for this wrapper:
 	note = {URL: https://github.com/rimjhimroy/Scantools_snakemake}
 }
 ```
+Please credit the original ScanTools project when using this wrapper. The upstream project is hosted on GitHub:
+
+Original ScanTools repository: https://github.com/pmonnahan/ScanTools (Paul Monnahan)
+
+Monnahan, P. et al. Pervasive population genomic consequences of genome duplication in Arabidopsis arenosa. Nat. Ecol. Evol. 3, 457 (2019).
+
+```bibtex
+@article{monnahan_arenosa_2019,
+	author = {Monnahan, P. and others},
+	title = {Pervasive population genomic consequences of genome duplication in Arabidopsis arenosa},
+	journal = {Nature Ecology & Evolution},
+	year = {2019},
+	volume = {3},
+	pages = {457},
+	note = {doi: 10.1038/s41559-019-0807-4}
+}
+
+```
+
+## Notes and caveats
+- The refactored modules are intended to be deterministic given fixed random seeds; set `numpy.random.seed()` in callers if exact reproducibility of downsampling is required.
+- When running on real data, ensure sites excluded from analysis (low coverage, low mappability, repeats) are consistently masked when computing callable sites and summary statistics.
+
