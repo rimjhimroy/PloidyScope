@@ -1,9 +1,9 @@
-Please cite the following when using this wrapper or the ScanTools software:
+Please cite the following when using PloidyScope or the underlying ScanTools methodology:
 
 Monnahan P., Kolář F., Baduel P., et al. (2019) Pervasive population genomic consequences of genome duplication in Arabidopsis arenosa. Nature Ecology & Evolution 3:457. https://doi.org/10.1038/s41559-019-0807-4
 
 Monnahan P. (2019) ScanTools. GitHub repository. https://github.com/pmonnahan/ScanTools
 
-R.R. Choudhury (2025) ScanTools Snakemake wrapper. https://github.com/rimjhimroy/Scantools_snakemake
+R.R. Choudhury (2025) PloidyScope. Local project repository.
 
 

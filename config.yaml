@@ -1,8 +1,16 @@
-# Example config for ScanTools Snakemake pipeline
-popkey: /data/users/rchoudhury/colchi_vaibhav/configs/pop_matrix.tsv
-vcf: /data/users/rchoudhury/colchi_vaibhav/results/gatk4/final_vcf/missingness_filtered.vcf.gz
-ref: /data/users/rchoudhury/Biscutella_Genomes/Biscutella_centromeres_and_chromosome_evolution/Genome_assemblies/Varia_review2.FINAL.Syri.fa
-outdir: results/scantools
+# Example config for the PloidyScope workflow
+#
+# `input_table` should be a single recoded table sorted by chromosome and position.
+# The expected columns are:
+# pop, ploidy, chromosome, position, an, dp, genotype_1, genotype_2, ...
+#
+# You can generate this table from ScanTools-style preprocessing or by
+# concatenating population-specific recoded tables in chromosome/position order.
+
+input_table: data/example.recoded.tsv
+outdir: results/ploidyscope
+stats:
+	- rho
 window_size: 100000
-step: 100000
-chroms: ["Bv1","Bv2","Bv3","Bv4","Bv5","Bv6","Bv7", "Bv8", "Bv9"]  # optional list of chromosomes to restrict to
+minimum_snps: 2
+populations: []

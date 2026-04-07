@@ -1,13 +1,10 @@
 cff-version: 1.2.0
-message: "If you use this wrapper please cite the ScanTools software and the key paper below."
-title: "ScanTools Snakemake wrapper"
+message: "If you use PloidyScope, please cite the software and the underlying ScanTools and mixed-ploidy references below."
+title: "PloidyScope"
 version: 2025
 authors:
   - family-names: Choudhury
     given-names: R. R.
-identifiers:
-  - type: url
-    value: "https://github.com/rimjhimroy/Scantools_snakemake"
 references:
   - type: article
     title: "Pervasive population genomic consequences of genome duplication in Arabidopsis arenosa"

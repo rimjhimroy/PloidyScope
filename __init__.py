@@ -1,2 +1,2 @@
-# Package marker for scantools_snakemake
+# Package marker for PloidyScope
 __all__ = []
