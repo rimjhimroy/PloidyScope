@@ -42,7 +42,7 @@ def test_dxy_windows_arbitrary_ploidy_counts():
     assert rows[0]["avg_dxy"] != "NA"
 
 
-def test_pi_and_tajima_outputs_have_pixy_style_fields():
+def test_pi_and_tajima_outputs_have_expected_fields():
     records = [
         ["POP1", "2", "chr1", "100", "4", "10", "0", "1", "2"],
         ["POP1", "2", "chr1", "200", "4", "10", "0", "0", "1"],

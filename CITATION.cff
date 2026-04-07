@@ -1,29 +1,8 @@
 cff-version: 1.2.0
-message: "If you use PloidyScope, please cite the software and the underlying ScanTools and mixed-ploidy references below."
+message: "If you use PloidyScope, please cite this software."
 title: "PloidyScope"
 version: 2025
 authors:
   - family-names: Choudhury
     given-names: R. R.
-references:
-  - type: article
-    title: "Pervasive population genomic consequences of genome duplication in Arabidopsis arenosa"
-    authors:
-      - family-names: Monnahan
-        given-names: P.
-      - family-names: Kolář
-        given-names: F.
-      - family-names: Baduel
-        given-names: P.
-      - family-names: others
-        given-names: "et al."
-    year: 2019
-    doi: "10.1038/s41559-019-0807-4"
-  - type: software
-    title: "ScanTools"
-    authors:
-      - family-names: Monnahan
-        given-names: P.
-    year: 2019
-    url: "https://github.com/pmonnahan/ScanTools"
 

@@ -4,7 +4,7 @@
 # The expected columns are:
 # pop, ploidy, chromosome, position, an, dp, genotype_1, genotype_2, ...
 #
-# You can generate this table from ScanTools-style preprocessing or by
+# You can generate this table from upstream preprocessing or by
 # concatenating population-specific recoded tables in chromosome/position order.
 
 input_table: data/example.recoded.tsv
