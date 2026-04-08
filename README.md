@@ -1,4 +1,11 @@
-# PloidyScope
+<h1>
+  <img src="assets/ploidyscope-icon.svg" alt="PloidyScope icon" width="40" valign="middle">
+  PloidyScope
+</h1>
+
+<p align="center">
+  <img src="assets/ploidyscope-logo.svg" alt="PloidyScope logo" width="900">
+</p>
 
 PloidyScope is a small, deterministic Snakemake workflow and Python package for windowed population-genetic summaries on mixed-ploidy genotype data. It is designed as a straightforward implementation with one clean package path and one simple workflow entrypoint.
 

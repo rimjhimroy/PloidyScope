@@ -1,0 +1,55 @@
+<svg width="1200" height="360" viewBox="0 0 1200 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="360" fill="#F7F6F1"/>
+
+  <rect x="48" y="40" width="292" height="280" rx="34" fill="#102A43"/>
+  <text x="76" y="82" fill="#D9E2EC" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="700" letter-spacing="2.2">MIXED PLOIDY</text>
+
+  <g fill="#D9E2EC" opacity="0.95">
+    <path d="M116 122C110 122 106 126 106 132V162C106 170 110 176 116 179C110 182 106 188 106 196V226C106 232 110 236 116 236H122C128 236 132 232 132 226V196C132 188 128 182 122 179C128 176 132 170 132 162V132C132 126 128 122 122 122H116Z"/>
+    <path d="M152 122C146 122 142 126 142 132V162C142 170 146 176 152 179C146 182 142 188 142 196V226C142 232 146 236 152 236H158C164 236 168 232 168 226V196C168 188 164 182 158 179C164 176 168 170 168 162V132C168 126 164 122 158 122H152Z"/>
+  </g>
+
+  <g fill="#D9E2EC" opacity="0.95">
+    <path d="M220 122C214 122 210 126 210 132V162C210 170 214 176 220 179C214 182 210 188 210 196V226C210 232 214 236 220 236H226C232 236 236 232 236 226V196C236 188 232 182 226 179C232 176 236 170 236 162V132C236 126 232 122 226 122H220Z"/>
+    <path d="M248 122C242 122 238 126 238 132V162C238 170 242 176 248 179C242 182 238 188 238 196V226C238 232 242 236 248 236H254C260 236 264 232 264 226V196C264 188 260 182 254 179C260 176 264 170 264 162V132C264 126 260 122 254 122H248Z"/>
+    <path d="M276 122C270 122 266 126 266 132V162C266 170 270 176 276 179C270 182 266 188 266 196V226C266 232 270 236 276 236H282C288 236 292 232 292 226V196C292 188 288 182 282 179C288 176 292 170 292 162V132C292 126 288 122 282 122H276Z"/>
+    <path d="M304 122C298 122 294 126 294 132V162C294 170 298 176 304 179C298 182 294 188 294 196V226C294 232 298 236 304 236H310C316 236 320 232 320 226V196C320 188 316 182 310 179C316 176 320 170 320 162V132C320 126 316 122 310 122H304Z"/>
+  </g>
+
+  <g fill="#F0B429">
+    <circle cx="119" cy="144" r="5.5"/>
+    <circle cx="119" cy="166" r="5.5"/>
+    <circle cx="119" cy="208" r="5.5"/>
+    <circle cx="155" cy="144" r="5.5"/>
+    <circle cx="155" cy="166" r="5.5"/>
+    <circle cx="155" cy="208" r="5.5"/>
+
+    <circle cx="223" cy="144" r="5"/>
+    <circle cx="223" cy="166" r="5"/>
+    <circle cx="223" cy="188" r="5"/>
+    <circle cx="223" cy="208" r="5"/>
+    <circle cx="251" cy="144" r="5"/>
+    <circle cx="251" cy="166" r="5"/>
+    <circle cx="251" cy="188" r="5"/>
+    <circle cx="251" cy="208" r="5"/>
+    <circle cx="279" cy="144" r="5"/>
+    <circle cx="279" cy="166" r="5"/>
+    <circle cx="279" cy="188" r="5"/>
+    <circle cx="279" cy="208" r="5"/>
+    <circle cx="307" cy="144" r="5"/>
+    <circle cx="307" cy="166" r="5"/>
+    <circle cx="307" cy="188" r="5"/>
+    <circle cx="307" cy="208" r="5"/>
+  </g>
+
+  <rect x="92" y="258" width="220" height="12" rx="6" fill="#486581" opacity="0.65"/>
+  <rect x="160" y="253" width="84" height="22" rx="7" fill="#F0B429"/>
+  <text x="170" y="269" fill="#102A43" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.8">WINDOW</text>
+
+  <g transform="translate(384 0)">
+    <text x="0" y="146" fill="#102A43" font-family="Helvetica, Arial, sans-serif" font-size="94" font-weight="700">PloidyScope</text>
+    <text x="4" y="194" fill="#486581" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="600" letter-spacing="5">MIXED-PLOIDY WINDOWED GENETICS</text>
+    <path d="M4 224H668" stroke="#D9E2EC" stroke-width="4" stroke-linecap="round"/>
+    <text x="4" y="270" fill="#334E68" font-family="Helvetica, Arial, sans-serif" font-size="28" font-weight="500">Windowed population-genetic summaries for mixed-ploidy data</text>
+  </g>
+</svg>

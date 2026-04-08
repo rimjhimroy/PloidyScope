@@ -1,4 +1,4 @@
-.PHONY: env extract-real-fixture compare-real-fixture compare-canonical-fixture compare-serpentine-fixture
+.PHONY: env extract-real-fixture compare-real-fixture compare-canonical-fixture compare-serpentine-fixture export-logo-png
 
 BASELINE_PYTHON := .tool-baselines/pixy-venv/bin/python
 CANONICAL_VCF := /data/users/rchoudhury/Biscutella_serpentine/results/gatk4/final_vcf/missingness_filtered.vcf.gz
@@ -26,3 +26,6 @@ compare-real-fixture:
 compare-canonical-fixture: extract-real-fixture compare-real-fixture
 
 compare-serpentine-fixture: compare-canonical-fixture
+
+export-logo-png:
+	$(BASELINE_PYTHON) scripts/export_logo_png.py
