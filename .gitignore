@@ -19,6 +19,8 @@ venv/
 .venv/
 env/
 envs/
+.baseline-venv/
+.tool-baselines/
 
 # Pytest / coverage
 .pytest_cache/
@@ -60,3 +62,17 @@ logs/
 # local editable install artifacts
 *.egg-info/
 *.egg
+
+# Generated test validation artifacts
+tests/data/fixture_comparison/pixy/
+tests/data/fixture_comparison/ploidyscope/
+tests/data/fixture_comparison/scantools/
+tests/data/fixture_comparison/summary.json
+tests/data/fixture_comparison/summary.tsv
+tests/data/fixture_comparison/visual_summary.md
+tests/data/fixture_comparison/visual_summary.svg
+tests/data/fixture_comparison/fixture/comparison_map.tsv
+tests/data/fixture_comparison/fixture/comparison_fixture_popmap.tsv
+!tests/data/fixture_comparison/fixture/comparison_fixture.vcf.gz
+!tests/data/fixture_comparison/fixture/comparison_fixture.vcf.gz.tbi
+!tests/data/fixture_comparison/fixture/comparison_fixture_metadata.tsv

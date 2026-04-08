@@ -5,6 +5,8 @@ from dataclasses import dataclass
 from itertools import combinations
 from typing import Iterable, Optional, Sequence
 
+import numpy as np
+
 from .common import PopulationRecord
 from .common import iter_loci
 from .common import window_bounds
@@ -19,8 +21,82 @@ class RhoSiteComponents:
     polymorphic: bool
 
 
+@dataclass(frozen=True)
+class DiploidWCFstSiteComponents:
+    fst_num: float
+    fst_den: float
+    polymorphic: bool
+
+
 def _filtered_genotypes(record: PopulationRecord) -> list[int]:
     return [value for value in record.genotypes if value is not None]
+
+
+def calc_diploid_wc_fst_site(
+    records: Sequence[PopulationRecord],
+) -> Optional[DiploidWCFstSiteComponents]:
+    if len(records) != 2 or any(record.ploidy != 2 for record in records):
+        return None
+
+    allele_counts = []
+    heterozygotes = 0.0
+    total_ref = 0.0
+    total_alt = 0.0
+
+    for record in records:
+        filtered = _filtered_genotypes(record)
+        alt_count = float(sum(filtered))
+        ref_count = float((2 * len(filtered)) - alt_count)
+        allele_counts.append([ref_count, alt_count])
+        heterozygotes += float(sum(1 for genotype in filtered if genotype == 1))
+        total_ref += ref_count
+        total_alt += alt_count
+
+    total_alleles = total_ref + total_alt
+    if total_alleles == 0.0:
+        return None
+
+    polymorphic = total_ref > 0.0 and total_alt > 0.0
+    if not polymorphic:
+        return DiploidWCFstSiteComponents(fst_num=0.0, fst_den=0.0, polymorphic=False)
+
+    ac = np.asarray(allele_counts, dtype=float)
+    an = np.sum(ac, axis=1)
+    n = an / 2.0
+    n_total = np.sum(n)
+    if float(n_total) == 0.0:
+        return None
+
+    r = 2.0
+    with np.errstate(divide="ignore", invalid="ignore"):
+        n_bar = np.mean(n)
+        n_c = (n_total - (np.sum(n**2) / n_total)) / (r - 1.0)
+        p = ac / an[:, np.newaxis]
+        ac_total = np.sum(ac, axis=0)
+        p_bar = ac_total / np.sum(an)
+        s_squared = np.sum(n[:, np.newaxis] * ((p - p_bar) ** 2), axis=0) / (n_bar * (r - 1.0))
+        h_bar = np.full(ac.shape[1], heterozygotes / n_total, dtype=float)
+        a = (n_bar / n_c) * (
+            s_squared
+            - (
+                (1.0 / (n_bar - 1.0))
+                * ((p_bar * (1.0 - p_bar)) - (((r - 1.0) * s_squared) / r) - (h_bar / 4.0))
+            )
+        )
+        b = (n_bar / (n_bar - 1.0)) * (
+            (p_bar * (1.0 - p_bar))
+            - (((r - 1.0) * s_squared) / r)
+            - ((((2.0 * n_bar) - 1.0) * h_bar) / (4.0 * n_bar))
+        )
+        c = h_bar / 2.0
+
+    fst_num = float(np.nansum(a))
+    fst_den = float(np.nansum(a) + np.nansum(b) + np.nansum(c))
+    return DiploidWCFstSiteComponents(
+        fst_num=fst_num,
+        fst_den=fst_den,
+        polymorphic=True,
+    )
 
 
 def calc_rho_site(records: Sequence[PopulationRecord]) -> Optional[RhoSiteComponents]:
@@ -153,6 +229,7 @@ def calc_rho_windows(
     windows: dict[tuple[str, str, str, int, int], dict[str, object]] = {}
     genome = defaultdict(float)
     genome_sites: dict[tuple[str, str], dict[str, int]] = defaultdict(dict)
+    pair_keys: set[tuple[str, str]] = set()
 
     for locus in iter_loci(records):
         population_map = {record.population: record for record in locus}
@@ -163,12 +240,14 @@ def calc_rho_windows(
         for pop1, pop2 in combinations(available_pops, 2):
             pair_records = [population_map[pop1], population_map[pop2]]
             components = calc_rho_site(pair_records)
-            if components is None:
+            diploid_wc_components = calc_diploid_wc_fst_site(pair_records)
+            if components is None and diploid_wc_components is None:
                 continue
 
             chromosome = pair_records[0].chromosome
             window_start, window_end = window_bounds(pair_records[0].position, window_size)
             key = (pop1, pop2, chromosome, window_start, window_end)
+            pair_keys.add((pop1, pop2))
             if key not in windows:
                 windows[key] = {
                     "pop1": pop1,
@@ -183,42 +262,64 @@ def calc_rho_windows(
                     "rho_den": 0.0,
                     "fst_num": 0.0,
                     "fst_den": 0.0,
+                    "fst_no_snps": 0,
                 }
 
             window = windows[key]
-            window["no_sites"] = int(window["no_sites"]) + 1
-            genome_sites[(pop1, pop2)]["no_sites"] = genome_sites[(pop1, pop2)].get("no_sites", 0) + 1
+            if components is not None:
+                window["no_sites"] = int(window["no_sites"]) + 1
+                genome_sites[(pop1, pop2)]["no_sites"] = genome_sites[(pop1, pop2)].get("no_sites", 0) + 1
 
-            if components.polymorphic:
+            if components is not None and components.polymorphic:
                 window["no_snps"] = int(window["no_snps"]) + 1
                 window["rho_num"] = float(window["rho_num"]) + components.rho_num
                 window["rho_den"] = float(window["rho_den"]) + components.rho_den
-                window["fst_num"] = float(window["fst_num"]) + components.fst_num
-                window["fst_den"] = float(window["fst_den"]) + components.fst_den
                 genome[(pop1, pop2, "rho_num")] += components.rho_num
                 genome[(pop1, pop2, "rho_den")] += components.rho_den
+                genome_sites[(pop1, pop2)]["no_snps"] = genome_sites[(pop1, pop2)].get("no_snps", 0) + 1
+
+            if diploid_wc_components is not None:
+                if diploid_wc_components.polymorphic:
+                    window["fst_no_snps"] = int(window["fst_no_snps"]) + 1
+                    window["fst_num"] = float(window["fst_num"]) + diploid_wc_components.fst_num
+                    window["fst_den"] = float(window["fst_den"]) + diploid_wc_components.fst_den
+                    genome[(pop1, pop2, "fst_num")] += diploid_wc_components.fst_num
+                    genome[(pop1, pop2, "fst_den")] += diploid_wc_components.fst_den
+                    genome_sites[(pop1, pop2)]["fst_no_snps"] = (
+                        genome_sites[(pop1, pop2)].get("fst_no_snps", 0) + 1
+                    )
+            elif components is not None and components.polymorphic:
+                window["fst_no_snps"] = int(window["fst_no_snps"]) + 1
+                window["fst_num"] = float(window["fst_num"]) + components.fst_num
+                window["fst_den"] = float(window["fst_den"]) + components.fst_den
                 genome[(pop1, pop2, "fst_num")] += components.fst_num
                 genome[(pop1, pop2, "fst_den")] += components.fst_den
-                genome_sites[(pop1, pop2)]["no_snps"] = genome_sites[(pop1, pop2)].get("no_snps", 0) + 1
+                genome_sites[(pop1, pop2)]["fst_no_snps"] = (
+                    genome_sites[(pop1, pop2)].get("fst_no_snps", 0) + 1
+                )
 
     output_rows = []
     for key in sorted(windows):
         row = windows[key]
         if int(row["no_snps"]) >= minimum_snps and float(row["rho_den"]) != 0.0:
             fac = float(row["rho_num"]) / float(row["rho_den"])
-            row["rho"] = fac / (1.0 + fac)
+            if fac != -1.0:
+                row["rho"] = fac / (1.0 + fac)
         output_rows.append(row)
 
     genomewide = []
-    for pop1, pop2 in sorted({(key[0], key[1]) for key in genome_sites}):
+    for pop1, pop2 in sorted(pair_keys):
         rho_den = genome[(pop1, pop2, "rho_den")]
         fst_den = genome[(pop1, pop2, "fst_den")]
         fac = genome[(pop1, pop2, "rho_num")] / rho_den if rho_den else None
+        rho_value = "NA"
+        if fac is not None and fac != -1.0:
+            rho_value = fac / (1.0 + fac)
         genomewide.append(
             {
                 "pop1": pop1,
                 "pop2": pop2,
-                "rho": (fac / (1.0 + fac)) if fac is not None else "NA",
+                "rho": rho_value,
                 "rho_num": genome[(pop1, pop2, "rho_num")],
                 "rho_den": rho_den,
                 "fst": (
@@ -226,6 +327,7 @@ def calc_rho_windows(
                 ),
                 "fst_num": genome[(pop1, pop2, "fst_num")],
                 "fst_den": fst_den,
+                "fst_no_snps": genome_sites[(pop1, pop2)].get("fst_no_snps", 0),
                 "no_sites": genome_sites[(pop1, pop2)].get("no_sites", 0),
                 "no_snps": genome_sites[(pop1, pop2)].get("no_snps", 0),
             }

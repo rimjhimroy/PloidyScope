@@ -1,16 +1,18 @@
-# Example config for the PloidyScope workflow
+# Example config for the PloidyScope workflow.
 #
-# `input_table` should be a single recoded table sorted by chromosome and position.
-# The expected columns are:
-# pop, ploidy, chromosome, position, an, dp, genotype_1, genotype_2, ...
+# Choose exactly one input mode:
+# 1. `input_vcf` + `population_map`
+# 2. `input_table`
 #
-# You can generate this table from upstream preprocessing or by
-# concatenating population-specific recoded tables in chromosome/position order.
+# Population map format: two columns with sample and population.
 
-input_table: data/example.recoded.tsv
+input_vcf: data/example.vcf.gz
+population_map: data/populations.tsv
+# input_table: data/example.recoded.tsv
 outdir: results/ploidyscope
 stats:
 	- rho
+	# Supported values: rho, dxy, pi, tajima_d, hudson
 window_size: 100000
 minimum_snps: 2
 populations: []
